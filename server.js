@@ -13,7 +13,7 @@ TARGET
 ==========================================================
 */
 
-const TARGET = "https://rngdle.com";
+const TARGET = "https://hentaicity.com";
 
 
 /*
