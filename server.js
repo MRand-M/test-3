@@ -13,7 +13,7 @@ TARGET
 ==========================================================
 */
 
-const TARGET = "https://mcpedl.com";
+const TARGET = "https://rngdle.com";
 
 
 /*
