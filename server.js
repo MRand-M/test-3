@@ -84,9 +84,9 @@ function isAllowedHost(hostname) {
     */
 
     if (
-        hostname === "a.pemsrv.com" ||
+        hostname === "pemsrv.com" ||
         hostname.startsWith(
-            "a.pemsrv.com"
+            ".pemsrv.com"
         )
     ) {
         return true;
