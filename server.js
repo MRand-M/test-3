@@ -84,9 +84,9 @@ function isAllowedHost(hostname) {
     */
 
     if (
-        hostname === "pemsrv.com" ||
+        hostname === "a.pemsrv.com" ||
         hostname.startsWith(
-            ".pemsrv.com"
+            "a.pemsrv.com"
         )
     ) {
         return true;
@@ -99,10 +99,10 @@ function isAllowedHost(hostname) {
 
     if (
         hostname ===
-            "hentaicity.com" ||
+            "www.hentaicity.com" ||
 
         hostname.startsWith(
-            ".hentaicity.com"
+            "www.hentaicity.com"
         )
     ) {
         return true;
