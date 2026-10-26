@@ -102,7 +102,7 @@ function isAllowedHost(hostname) {
             "hentaicity.com" ||
 
         hostname.startsWith(
-            "hentaicity.com"
+            ".hentaicity.com"
         )
     ) {
         return true;
