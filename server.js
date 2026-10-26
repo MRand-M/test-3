@@ -301,6 +301,95 @@ function rewriteTextUrls(
     return text;
 }
 
+function injectRuntimeUrlFix(text, req) {
+    const protocol =
+        req.headers["x-forwarded-proto"] || "https";
+
+    const host = req.headers.host;
+    const localOrigin = `${protocol}://${host}`;
+
+    const targetOrigin = new URL(TARGET).origin;
+
+    const script = `
+<script>
+(function () {
+    const targetOrigin = ${JSON.stringify(targetOrigin)};
+    const localOrigin = ${JSON.stringify(localOrigin)};
+
+    function fixUrl(value) {
+        if (typeof value !== "string") {
+            return value;
+        }
+
+        try {
+            const url = new URL(value, document.baseURI);
+
+            // 只转换目标网站本身的 URL
+            if (url.origin === targetOrigin) {
+                return localOrigin +
+                    url.pathname +
+                    url.search +
+                    url.hash;
+            }
+        } catch (e) {}
+
+        return value;
+    }
+
+    // 处理 script.src = "..."
+    const srcDescriptor =
+        Object.getOwnPropertyDescriptor(
+            HTMLScriptElement.prototype,
+            "src"
+        );
+
+    if (srcDescriptor && srcDescriptor.get && srcDescriptor.set) {
+        Object.defineProperty(
+            HTMLScriptElement.prototype,
+            "src",
+            {
+                configurable: srcDescriptor.configurable,
+                enumerable: srcDescriptor.enumerable,
+
+                get: function () {
+                    return srcDescriptor.get.call(this);
+                },
+
+                set: function (value) {
+                    srcDescriptor.set.call(this, fixUrl(value));
+                }
+            }
+        );
+    }
+
+    // 处理 script.setAttribute("src", "...")
+    const originalSetAttribute = Element.prototype.setAttribute;
+
+    Element.prototype.setAttribute = function (name, value) {
+        if (
+            this instanceof HTMLScriptElement &&
+            String(name).toLowerCase() === "src"
+        ) {
+            value = fixUrl(value);
+        }
+
+        return originalSetAttribute.call(this, name, value);
+    };
+
+    console.log("[Embed Proxy] Runtime script URL fix enabled");
+})();
+</script>
+`;
+
+    if (/<head\\b[^>]*>/i.test(text)) {
+        return text.replace(
+            /<head\\b[^>]*>/i,
+            match => match + script
+        );
+    }
+
+    return script + text;
+}
 
 /*
 ==========================================================
@@ -1069,7 +1158,11 @@ app.use(
                                     );
                             }
 
-
+                            // 修复 HTML 中动态生成的脚本 URL
+                            if (isHtml) {
+                                text = injectRuntimeUrlFix(text, req);
+                            }
+                            
                             /*
                             ==================================================
                             删除压缩标记
