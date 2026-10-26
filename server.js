@@ -99,10 +99,10 @@ function isAllowedHost(hostname) {
 
     if (
         hostname ===
-            "www.hentaicity.com" ||
+            "hentaicity.com" ||
 
-        hostname.startsWith(
-            "www.hentaicity.com"
+        hostname.endsWith(
+            ".hentaicity.com"
         )
     ) {
         return true;
