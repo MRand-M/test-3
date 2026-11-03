@@ -13,7 +13,7 @@ TARGET
 ==========================================================
 */
 
-const TARGET = "https://mcbuild.org";
+const TARGET = "https://18comic.vip";
 
 
 /*
@@ -84,9 +84,9 @@ function isAllowedHost(hostname) {
     */
 
     if (
-        hostname === "pemsrv.com" ||
+        hostname === "cloudflare.com" ||
         hostname.startsWith(
-            ".pemsrv.com"
+            "cloudflare.com"
         )
     ) {
         return true;
