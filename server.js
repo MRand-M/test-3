@@ -13,7 +13,7 @@ TARGET
 ==========================================================
 */
 
-const TARGET = "https://mcpeland.io";
+const TARGET = "https://prismlauncher.org";
 
 
 /*
