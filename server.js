@@ -13,7 +13,7 @@ TARGET
 ==========================================================
 */
 
-const TARGET = "https://mc-addons.com";
+const TARGET = "https://modstr.com";
 
 
 /*
