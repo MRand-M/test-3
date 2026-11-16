@@ -13,7 +13,7 @@ TARGET
 ==========================================================
 */
 
-const TARGET = "https://modstr.com";
+const TARGET = "https://roblox.com";
 
 
 /*
@@ -99,10 +99,10 @@ function isAllowedHost(hostname) {
 
     if (
         hostname ===
-            "hentaicity.com" ||
+            "roblox.com" ||
 
         hostname.endsWith(
-            ".hentaicity.com"
+            ".roblox.com"
         )
     ) {
         return true;
