@@ -99,7 +99,7 @@ function isAllowedHost(hostname) {
 
     if (
         hostname ===
-            "roblox.com" ||
+            "ink" ||
 
         hostname.endsWith(
             ".ink"
