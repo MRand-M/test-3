@@ -1159,9 +1159,9 @@ app.use(
                             }
 
                             // 修复 HTML 中动态生成的脚本 URL
-                            if (isHtml) {
-                                text = injectRuntimeUrlFix(text, req);
-                            }
+                            //if (isHtml) {
+                            //    text = injectRuntimeUrlFix(text, req);
+                            //}
                             
                             /*
                             ==================================================
