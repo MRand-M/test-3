@@ -381,9 +381,9 @@ function injectRuntimeUrlFix(text, req) {
 </script>
 `;
 
-    if (/<head\\b[^>]*>/i.test(text)) {
+    if (/<head\b[^>]*>/i.test(text)) {
         return text.replace(
-            /<head\\b[^>]*>/i,
+            /<head\b[^>]*>/i,
             match => match + script
         );
     }
