@@ -13,7 +13,7 @@ TARGET
 ==========================================================
 */
 
-const TARGET = "https://roblox.com";
+const TARGET = "18comic.ink";
 
 
 /*
@@ -102,7 +102,7 @@ function isAllowedHost(hostname) {
             "roblox.com" ||
 
         hostname.endsWith(
-            ".roblox.com"
+            ".ink"
         )
     ) {
         return true;
